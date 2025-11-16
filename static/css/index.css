@@ -26,10 +26,10 @@ body {
 }
 
 .title-icon {
-  height: 0.85em;  /* 改小一點 */
+  height: 1em;  /* 改小一點 */
   width: auto;
   vertical-align: middle;
-  margin-right: 0.4rem;
+  margin-right: 0.1rem;
   margin-bottom: 0.1em;  /* 微調垂直位置 */
 }
 .publication-title {
