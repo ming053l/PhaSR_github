@@ -25,6 +25,13 @@ body {
   font-family: 'Google Sans', sans-serif;
 }
 
+.title-icon {
+  height: 1.2em;  /* 根據標題大小調整 */
+  width: auto;
+  vertical-align: middle;
+  margin-right: 0.5rem;
+}
+
 .publication-title {
 }
 
