@@ -168,13 +168,13 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/teaser.mp4"
-                type="video/mp4">
-      </video>
-      <h2 class="subtitle has-text-centered">
-        <span class="dnerf">PhaSR</span> combines parameter-free Retinex normalization with geometric-semantic cross-modal attention 
-        for state-of-the-art shadow removal and ambient lighting normalization with highest efficiency.
+      <img src="./static/images/PhaSR-motivation.png" alt="PhaSR Motivation" style="width: 100%;">
+      <h2 class="subtitle has-text-centered" style="margin-top: 20px;">
+        <strong>Why PhaSR?</strong> Prior methods lose physical priors through encoder-decoder bottlenecks, 
+        failing to accurately localize shadows in feature space (see feature visualizations above). 
+        <span class="dnerf">PhaSR</span> maintains physical alignment through <strong>dual-level prior integration</strong>: 
+        parameter-free Retinex normalization (PAN) + geometric-semantic cross-modal attention (GSRA), 
+        achieving robust shadow removal from single-light to multi-source ambient lighting.
       </h2>
     </div>
   </div>
@@ -235,7 +235,7 @@
       <!-- Comparison -->
       <div class="column">
         <br/>
-        <h2 class="title is-4">Comparison Results on WSRD+</h2>
+        <h2 class="title is-4">Comparison Results on WSRD+ (Realworld-Indoor)</h2>
 
         <!-- Sample 1 -->
         <h3 class="title is-5">Sample 1</h3>
@@ -401,6 +401,8 @@
         </div>
         <br /><br />
 
+        
+        <h2 class="title is-4">Comparison Results on INS Dataset (Synthesized-Indoor)</h2>
         <!-- Sample 3 Full -->
         <h3 class="title is-5">Sample 3 - Full Image</h3>
         
