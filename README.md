@@ -14,7 +14,7 @@ National Yang Ming Chiao Tung University, National Cheng Kung University
 
 ## Overview
 
-**TL;DR:** PhaSR combines parameter-free Retinex normalization with geometric-semantic cross-modal attention for state-of-the-art shadow removal and ambient lighting normalization with highest efficiency.
+**TL;DR:** PhaSR combines parameter-free Retinex normalization with geometric-semantic cross-modal attention for state-of-the-art shadow removal and ambient lighting normalization with the highest efficiency.
 
 - **Background and Motivation**
 
@@ -55,7 +55,6 @@ conda activate phasr
 pip install torch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 --index-url https://download.pytorch.org/whl/cu118
 cd phasr
 pip install -r requirements.txt
-python setup.py develop
 ```
 
 ## Dataset Structure
