@@ -42,20 +42,41 @@
       --default-handle-opacity: 0.3;
     }
 
+    .comparison-row {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      justify-content: center;
+      flex-wrap: nowrap;
+    }
+
+    .comparison-item {
+      flex: 1;
+      min-width: 0;
+      max-width: 300px;
+    }
+
     .comparison-wrapper {
       position: relative;
-      display: inline-block;
+      display: block;
       width: 100%;
+    }
+
+    .model-title {
+      text-align: center;
+      margin-bottom: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
     }
 
     .comparison-label {
       position: absolute;
       bottom: 6px;
-      padding: 2px 6px;
+      padding: 3px 8px;
       border-radius: 4px;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 600;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.65);
       color: white;
       pointer-events: none;
       z-index: 10;
@@ -69,25 +90,18 @@
       right: 6px;
     }
 
-    .model-title {
-      margin-bottom: 8px;
-      font-weight: 600;
-      font-size: 1.1rem;
-    }
-
     .sample-section {
       margin-bottom: 3rem;
     }
 
-    .comparison-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-
-    .comparison-item {
-      width: 100%;
+    @media (max-width: 1200px) {
+      .comparison-row {
+        flex-wrap: wrap;
+      }
+      .comparison-item {
+        flex: 1 1 45%;
+        max-width: none;
+      }
     }
   </style>
 
@@ -296,7 +310,7 @@
         <div class="sample-section">
           <h3 class="title is-4">Sample 1</h3>
           
-          <div class="comparison-grid">
+          <div class="comparison-row">
             <div class="comparison-item">
               <p class="model-title">PhaSR (Ours)</p>
               <div class="comparison-wrapper">
@@ -351,7 +365,7 @@
         <div class="sample-section">
           <h3 class="title is-4">Sample 2</h3>
           
-          <div class="comparison-grid">
+          <div class="comparison-row">
             <div class="comparison-item">
               <p class="model-title">PhaSR (Ours)</p>
               <div class="comparison-wrapper">
@@ -408,7 +422,7 @@
         <div class="sample-section">
           <h3 class="title is-4">Sample 3 - Full Image</h3>
           
-          <div class="comparison-grid">
+          <div class="comparison-row">
             <div class="comparison-item">
               <p class="model-title">PhaSR (Ours)</p>
               <div class="comparison-wrapper">
@@ -463,7 +477,7 @@
         <div class="sample-section">
           <h3 class="title is-4">Sample 3 - Cropped Region</h3>
           
-          <div class="comparison-grid">
+          <div class="comparison-row">
             <div class="comparison-item">
               <p class="model-title">PhaSR (Ours)</p>
               <div class="comparison-wrapper">
@@ -518,7 +532,7 @@
         <div class="sample-section">
           <h3 class="title is-4">Sample 4 - Full Image</h3>
           
-          <div class="comparison-grid">
+          <div class="comparison-row">
             <div class="comparison-item">
               <p class="model-title">PhaSR (Ours)</p>
               <div class="comparison-wrapper">
@@ -573,7 +587,7 @@
         <div class="sample-section">
           <h3 class="title is-4">Sample 4 - Cropped Region</h3>
           
-          <div class="comparison-grid">
+          <div class="comparison-row">
             <div class="comparison-item">
               <p class="model-title">PhaSR (Ours)</p>
               <div class="comparison-wrapper">
