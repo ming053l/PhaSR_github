@@ -33,12 +33,70 @@
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
   <link rel="icon" href="./static/images/icon.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/styles.css"/>
+
+  <style>
+    img-comparison-slider {
+      --divider-width: 2px;
+      --divider-color: #535353;
+      --default-handle-opacity: 0.3;
+    }
+
+    .comparison-wrapper {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+
+    .comparison-label {
+      position: absolute;
+      bottom: 6px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .before-label {
+      left: 6px;
+    }
+
+    .after-label {
+      right: 6px;
+    }
+
+    .model-title {
+      margin-bottom: 8px;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .sample-section {
+      margin-bottom: 3rem;
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .comparison-item {
+      width: 100%;
+    }
+  </style>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/index.js"></script>
 </head>
   
 <body>
@@ -228,510 +286,345 @@
   </div>
 </section>
 
-  <section class="section">
+<section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
-      <!-- Comparison -->
       <div class="column">
-        <br/>
-        <h2 class="title is-4">Comparison Results on WSRD+ (Realworld-Indoor)</h2>
+        <h2 class="title is-3 has-text-centered">Comparison Results on WSRD+ (Realworld-Indoor)</h2>
 
         <!-- Sample 1 -->
-        <h3 class="title is-5">Sample 1</h3>
-        
-        <div class="image-columns">
-          <div class="image-column">
-            <div id="compare1" class="bal-container-origin">
-              <div class="bal-after">
-                <img src="./static/images/Sample1/input.png">
-                <div class="bal-afterPosition afterLabel">Input</div>
-              </div>
-              <div class="bal-before">
-                <div class="bal-before-inset">
-                  <img src="./static/images/Sample1/PhaSR.png">
-                  <div class="bal-beforePosition beforeLabel">PhaSR (Ours)</div>
-                </div>
-              </div>
-              <div class="bal-handle">
-                <span class="handle-left-arrow"></span>
-                <span class="handle-right-arrow"></span>
+        <div class="sample-section">
+          <h3 class="title is-4">Sample 1</h3>
+          
+          <div class="comparison-grid">
+            <div class="comparison-item">
+              <p class="model-title">PhaSR (Ours)</p>
+              <div class="comparison-wrapper">
+                <img-comparison-slider>
+                  <img slot="first" src="./static/images/Sample1/input.png">
+                  <img slot="second" src="./static/images/Sample1/PhaSR.png">
+                </img-comparison-slider>
+                <div class="comparison-label before-label">Input</div>
+                <div class="comparison-label after-label">PhaSR</div>
               </div>
             </div>
-          </div>
 
-          <div class="image-column">
-            <div id="compare2" class="bal-container-origin">
-              <div class="bal-after">
-                <img src="./static/images/Sample1/input.png">
-                <div class="bal-afterPosition afterLabel">Input</div>
-              </div>
-              <div class="bal-before">
-                <div class="bal-before-inset">
-                  <img src="./static/images/Sample1/DenseSR.png">
-                  <div class="bal-beforePosition beforeLabel">DenseSR</div>
-                </div>
-              </div>
-              <div class="bal-handle">
-                <span class="handle-left-arrow"></span>
-                <span class="handle-right-arrow"></span>
+            <div class="comparison-item">
+              <p class="model-title">DenseSR</p>
+              <div class="comparison-wrapper">
+                <img-comparison-slider>
+                  <img slot="first" src="./static/images/Sample1/input.png">
+                  <img slot="second" src="./static/images/Sample1/DenseSR.png">
+                </img-comparison-slider>
+                <div class="comparison-label before-label">Input</div>
+                <div class="comparison-label after-label">DenseSR</div>
               </div>
             </div>
-          </div>
 
-          <div class="image-column">
-            <div id="compare3" class="bal-container-origin">
-              <div class="bal-after">
-                <img src="./static/images/Sample1/input.png">
-                <div class="bal-afterPosition afterLabel">Input</div>
-              </div>
-              <div class="bal-before">
-                <div class="bal-before-inset">
-                  <img src="./static/images/Sample1/ShadowRefiner.png">
-                  <div class="bal-beforePosition beforeLabel">ShadowRefiner</div>
-                </div>
-              </div>
-              <div class="bal-handle">
-                <span class="handle-left-arrow"></span>
-                <span class="handle-right-arrow"></span>
+            <div class="comparison-item">
+              <p class="model-title">ShadowRefiner</p>
+              <div class="comparison-wrapper">
+                <img-comparison-slider>
+                  <img slot="first" src="./static/images/Sample1/input.png">
+                  <img slot="second" src="./static/images/Sample1/ShadowRefiner.png">
+                </img-comparison-slider>
+                <div class="comparison-label before-label">Input</div>
+                <div class="comparison-label after-label">ShadowRefiner</div>
               </div>
             </div>
-          </div>
 
-          <div class="image-column">
-            <div id="compare4" class="bal-container-origin">
-              <div class="bal-after">
-                <img src="./static/images/Sample1/input.png">
-                <div class="bal-afterPosition afterLabel">Input</div>
-              </div>
-              <div class="bal-before">
-                <div class="bal-before-inset">
-                  <img src="./static/images/Sample1/StableShadowDiffusion.png">
-                  <div class="bal-beforePosition beforeLabel">StableShadowDiffusion</div>
-                </div>
-              </div>
-              <div class="bal-handle">
-                <span class="handle-left-arrow"></span>
-                <span class="handle-right-arrow"></span>
+            <div class="comparison-item">
+              <p class="model-title">StableShadowDiffusion</p>
+              <div class="comparison-wrapper">
+                <img-comparison-slider>
+                  <img slot="first" src="./static/images/Sample1/input.png">
+                  <img slot="second" src="./static/images/Sample1/StableShadowDiffusion.png">
+                </img-comparison-slider>
+                <div class="comparison-label before-label">Input</div>
+                <div class="comparison-label after-label">StableShadowDiffusion</div>
               </div>
             </div>
           </div>
         </div>
-        <br /><br />
 
         <!-- Sample 2 -->
-        <h3 class="title is-5">Sample 2</h3>
-        
-        <div class="image-columns">
-          <div class="image-column">
-            <div id="compare5" class="bal-container-origin">
-              <div class="bal-after">
-                <img src="./static/images/Sample2/input.png">
-                <div class="bal-afterPosition afterLabel">Input</div>
-              </div>
-              <div class="bal-before">
-                <div class="bal-before-inset">
-                  <img src="./static/images/Sample2/PhaSR.png">
-                  <div class="bal-beforePosition beforeLabel">PhaSR (Ours)</div>
-                </div>
-              </div>
-              <div class="bal-handle">
-                <span class="handle-left-arrow"></span>
-                <span class="handle-right-arrow"></span>
-              </div>
-            </div>
-          </div>
-
-          <div class="image-column">
-            <div id="compare6" class="bal-container-origin">
-              <div class="bal-after">
-                <img src="./static/images/Sample2/input.png">
-                <div class="bal-afterPosition afterLabel">Input</div>
-              </div>
-              <div class="bal-before">
-                <div class="bal-before-inset">
-                  <img src="./static/images/Sample2/DenseSR.png">
-                  <div class="bal-beforePosition beforeLabel">DenseSR</div>
-                </div>
-              </div>
-              <div class="bal-handle">
-                <span class="handle-left-arrow"></span>
-                <span class="handle-right-arrow"></span>
-              </div>
-            </div>
-          </div>
-
-          <div class="image-column">
-            <div id="compare7" class="bal-container-origin">
-              <div class="bal-after">
-                <img src="./static/images/Sample2/input.png">
-                <div class="bal-afterPosition afterLabel">Input</div>
-              </div>
-              <div class="bal-before">
-                <div class="bal-before-inset">
-                  <img src="./static/images/Sample2/ShadowRefiner.png">
-                  <div class="bal-beforePosition beforeLabel">ShadowRefiner</div>
-                </div>
-              </div>
-              <div class="bal-handle">
-                <span class="handle-left-arrow"></span>
-                <span class="handle-right-arrow"></span>
-              </div>
-            </div>
-          </div>
+        <div class="sample-section">
+          <h3 class="title is-4">Sample 2</h3>
           
-          <div class="image-column">
-            <div id="compare8" class="bal-container-origin">
-              <div class="bal-after">
-                <img src="./static/images/Sample2/input.png">
-                <div class="bal-afterPosition afterLabel">Input</div>
+          <div class="comparison-grid">
+            <div class="comparison-item">
+              <p class="model-title">PhaSR (Ours)</p>
+              <div class="comparison-wrapper">
+                <img-comparison-slider>
+                  <img slot="first" src="./static/images/Sample2/input.png">
+                  <img slot="second" src="./static/images/Sample2/PhaSR.png">
+                </img-comparison-slider>
+                <div class="comparison-label before-label">Input</div>
+                <div class="comparison-label after-label">PhaSR</div>
               </div>
-              <div class="bal-before">
-                <div class="bal-before-inset">
-                  <img src="./static/images/Sample2/StableShadowDiffusion.png">
-                  <div class="bal-beforePosition beforeLabel">StableShadowDiffusion</div>
-                </div>
+            </div>
+
+            <div class="comparison-item">
+              <p class="model-title">DenseSR</p>
+              <div class="comparison-wrapper">
+                <img-comparison-slider>
+                  <img slot="first" src="./static/images/Sample2/input.png">
+                  <img slot="second" src="./static/images/Sample2/DenseSR.png">
+                </img-comparison-slider>
+                <div class="comparison-label before-label">Input</div>
+                <div class="comparison-label after-label">DenseSR</div>
               </div>
-              <div class="bal-handle">
-                <span class="handle-left-arrow"></span>
-                <span class="handle-right-arrow"></span>
+            </div>
+
+            <div class="comparison-item">
+              <p class="model-title">ShadowRefiner</p>
+              <div class="comparison-wrapper">
+                <img-comparison-slider>
+                  <img slot="first" src="./static/images/Sample2/input.png">
+                  <img slot="second" src="./static/images/Sample2/ShadowRefiner.png">
+                </img-comparison-slider>
+                <div class="comparison-label before-label">Input</div>
+                <div class="comparison-label after-label">ShadowRefiner</div>
+              </div>
+            </div>
+
+            <div class="comparison-item">
+              <p class="model-title">StableShadowDiffusion</p>
+              <div class="comparison-wrapper">
+                <img-comparison-slider>
+                  <img slot="first" src="./static/images/Sample2/input.png">
+                  <img slot="second" src="./static/images/Sample2/StableShadowDiffusion.png">
+                </img-comparison-slider>
+                <div class="comparison-label before-label">Input</div>
+                <div class="comparison-label after-label">StableShadowDiffusion</div>
               </div>
             </div>
           </div>
         </div>
-        <br /><br />
 
-        
-        <h2 class="title is-4">Comparison Results on INS Dataset (Synthesized-Indoor)</h2>
+        <h2 class="title is-3 has-text-centered" style="margin-top: 3rem;">Comparison Results on INS Dataset (Synthesized-Indoor)</h2>
+
         <!-- Sample 3 Full -->
-        <h3 class="title is-5">Sample 3 - Full Image</h3>
-        
-        <div class="image-columns">
-          <div class="image-column">
-            <div id="compare9" class="bal-container-origin">
-              <div class="bal-after">
-                <img src="./static/images/Sample3_full/input.png">
-                <div class="bal-afterPosition afterLabel">Input</div>
-              </div>
-              <div class="bal-before">
-                <div class="bal-before-inset">
-                  <img src="./static/images/Sample3_full/PhaSR.png">
-                  <div class="bal-beforePosition beforeLabel">PhaSR (Ours)</div>
-                </div>
-              </div>
-              <div class="bal-handle">
-                <span class="handle-left-arrow"></span>
-                <span class="handle-right-arrow"></span>
+        <div class="sample-section">
+          <h3 class="title is-4">Sample 3 - Full Image</h3>
+          
+          <div class="comparison-grid">
+            <div class="comparison-item">
+              <p class="model-title">PhaSR (Ours)</p>
+              <div class="comparison-wrapper">
+                <img-comparison-slider>
+                  <img slot="first" src="./static/images/Sample3_full/input.png">
+                  <img slot="second" src="./static/images/Sample3_full/PhaSR.png">
+                </img-comparison-slider>
+                <div class="comparison-label before-label">Input</div>
+                <div class="comparison-label after-label">PhaSR</div>
               </div>
             </div>
-          </div>
 
-          <div class="image-column">
-            <div id="compare10" class="bal-container-origin">
-              <div class="bal-after">
-                <img src="./static/images/Sample3_full/input.png">
-                <div class="bal-afterPosition afterLabel">Input</div>
-              </div>
-              <div class="bal-before">
-                <div class="bal-before-inset">
-                  <img src="./static/images/Sample3_full/DenseSR.png">
-                  <div class="bal-beforePosition beforeLabel">DenseSR</div>
-                </div>
-              </div>
-              <div class="bal-handle">
-                <span class="handle-left-arrow"></span>
-                <span class="handle-right-arrow"></span>
+            <div class="comparison-item">
+              <p class="model-title">DenseSR</p>
+              <div class="comparison-wrapper">
+                <img-comparison-slider>
+                  <img slot="first" src="./static/images/Sample3_full/input.png">
+                  <img slot="second" src="./static/images/Sample3_full/DenseSR.png">
+                </img-comparison-slider>
+                <div class="comparison-label before-label">Input</div>
+                <div class="comparison-label after-label">DenseSR</div>
               </div>
             </div>
-          </div>
 
-          <div class="image-column">
-            <div id="compare11" class="bal-container-origin">
-              <div class="bal-after">
-                <img src="./static/images/Sample3_full/input.png">
-                <div class="bal-afterPosition afterLabel">Input</div>
-              </div>
-              <div class="bal-before">
-                <div class="bal-before-inset">
-                  <img src="./static/images/Sample3_full/OmniSR.png">
-                  <div class="bal-beforePosition beforeLabel">OmniSR</div>
-                </div>
-              </div>
-              <div class="bal-handle">
-                <span class="handle-left-arrow"></span>
-                <span class="handle-right-arrow"></span>
+            <div class="comparison-item">
+              <p class="model-title">OmniSR</p>
+              <div class="comparison-wrapper">
+                <img-comparison-slider>
+                  <img slot="first" src="./static/images/Sample3_full/input.png">
+                  <img slot="second" src="./static/images/Sample3_full/OmniSR.png">
+                </img-comparison-slider>
+                <div class="comparison-label before-label">Input</div>
+                <div class="comparison-label after-label">OmniSR</div>
               </div>
             </div>
-          </div>
 
-          <div class="image-column">
-            <div id="compare12" class="bal-container-origin">
-              <div class="bal-after">
-                <img src="./static/images/Sample3_full/input.png">
-                <div class="bal-afterPosition afterLabel">Input</div>
-              </div>
-              <div class="bal-before">
-                <div class="bal-before-inset">
-                  <img src="./static/images/Sample3_full/StableShadowDiffusion.png">
-                  <div class="bal-beforePosition beforeLabel">StableShadowDiffusion</div>
-                </div>
-              </div>
-              <div class="bal-handle">
-                <span class="handle-left-arrow"></span>
-                <span class="handle-right-arrow"></span>
+            <div class="comparison-item">
+              <p class="model-title">StableShadowDiffusion</p>
+              <div class="comparison-wrapper">
+                <img-comparison-slider>
+                  <img slot="first" src="./static/images/Sample3_full/input.png">
+                  <img slot="second" src="./static/images/Sample3_full/StableShadowDiffusion.png">
+                </img-comparison-slider>
+                <div class="comparison-label before-label">Input</div>
+                <div class="comparison-label after-label">StableShadowDiffusion</div>
               </div>
             </div>
           </div>
         </div>
-        <br /><br />
 
         <!-- Sample 3 Cropped -->
-        <h3 class="title is-5">Sample 3 - Cropped Region</h3>
-        
-        <div class="image-columns">
-          <div class="image-column">
-            <div id="compare13" class="bal-container-origin">
-              <div class="bal-after">
-                <img src="./static/images/Sample3_cropped/input.png">
-                <div class="bal-afterPosition afterLabel">Input</div>
-              </div>
-              <div class="bal-before">
-                <div class="bal-before-inset">
-                  <img src="./static/images/Sample3_cropped/PhaSR.png">
-                  <div class="bal-beforePosition beforeLabel">PhaSR (Ours)</div>
-                </div>
-              </div>
-              <div class="bal-handle">
-                <span class="handle-left-arrow"></span>
-                <span class="handle-right-arrow"></span>
+        <div class="sample-section">
+          <h3 class="title is-4">Sample 3 - Cropped Region</h3>
+          
+          <div class="comparison-grid">
+            <div class="comparison-item">
+              <p class="model-title">PhaSR (Ours)</p>
+              <div class="comparison-wrapper">
+                <img-comparison-slider>
+                  <img slot="first" src="./static/images/Sample3_cropped/input.png">
+                  <img slot="second" src="./static/images/Sample3_cropped/PhaSR.png">
+                </img-comparison-slider>
+                <div class="comparison-label before-label">Input</div>
+                <div class="comparison-label after-label">PhaSR</div>
               </div>
             </div>
-          </div>
 
-          <div class="image-column">
-            <div id="compare14" class="bal-container-origin">
-              <div class="bal-after">
-                <img src="./static/images/Sample3_cropped/input.png">
-                <div class="bal-afterPosition afterLabel">Input</div>
-              </div>
-              <div class="bal-before">
-                <div class="bal-before-inset">
-                  <img src="./static/images/Sample3_cropped/DenseSR.png">
-                  <div class="bal-beforePosition beforeLabel">DenseSR</div>
-                </div>
-              </div>
-              <div class="bal-handle">
-                <span class="handle-left-arrow"></span>
-                <span class="handle-right-arrow"></span>
+            <div class="comparison-item">
+              <p class="model-title">DenseSR</p>
+              <div class="comparison-wrapper">
+                <img-comparison-slider>
+                  <img slot="first" src="./static/images/Sample3_cropped/input.png">
+                  <img slot="second" src="./static/images/Sample3_cropped/DenseSR.png">
+                </img-comparison-slider>
+                <div class="comparison-label before-label">Input</div>
+                <div class="comparison-label after-label">DenseSR</div>
               </div>
             </div>
-          </div>
 
-          <div class="image-column">
-            <div id="compare15" class="bal-container-origin">
-              <div class="bal-after">
-                <img src="./static/images/Sample3_cropped/input.png">
-                <div class="bal-afterPosition afterLabel">Input</div>
-              </div>
-              <div class="bal-before">
-                <div class="bal-before-inset">
-                  <img src="./static/images/Sample3_cropped/OmniSR.png">
-                  <div class="bal-beforePosition beforeLabel">OmniSR</div>
-                </div>
-              </div>
-              <div class="bal-handle">
-                <span class="handle-left-arrow"></span>
-                <span class="handle-right-arrow"></span>
+            <div class="comparison-item">
+              <p class="model-title">OmniSR</p>
+              <div class="comparison-wrapper">
+                <img-comparison-slider>
+                  <img slot="first" src="./static/images/Sample3_cropped/input.png">
+                  <img slot="second" src="./static/images/Sample3_cropped/OmniSR.png">
+                </img-comparison-slider>
+                <div class="comparison-label before-label">Input</div>
+                <div class="comparison-label after-label">OmniSR</div>
               </div>
             </div>
-          </div>
 
-          <div class="image-column">
-            <div id="compare16" class="bal-container-origin">
-              <div class="bal-after">
-                <img src="./static/images/Sample3_cropped/input.png">
-                <div class="bal-afterPosition afterLabel">Input</div>
-              </div>
-              <div class="bal-before">
-                <div class="bal-before-inset">
-                  <img src="./static/images/Sample3_cropped/StableShadowDiffusion.png">
-                  <div class="bal-beforePosition beforeLabel">StableShadowDiffusion</div>
-                </div>
-              </div>
-              <div class="bal-handle">
-                <span class="handle-left-arrow"></span>
-                <span class="handle-right-arrow"></span>
+            <div class="comparison-item">
+              <p class="model-title">StableShadowDiffusion</p>
+              <div class="comparison-wrapper">
+                <img-comparison-slider>
+                  <img slot="first" src="./static/images/Sample3_cropped/input.png">
+                  <img slot="second" src="./static/images/Sample3_cropped/StableShadowDiffusion.png">
+                </img-comparison-slider>
+                <div class="comparison-label before-label">Input</div>
+                <div class="comparison-label after-label">StableShadowDiffusion</div>
               </div>
             </div>
           </div>
         </div>
-        <br /><br />
 
         <!-- Sample 4 Full -->
-        <h3 class="title is-5">Sample 4 - Full Image</h3>
-        
-        <div class="image-columns">
-          <div class="image-column">
-            <div id="compare17" class="bal-container-origin">
-              <div class="bal-after">
-                <img src="./static/images/Sample4_full/input.png">
-                <div class="bal-afterPosition afterLabel">Input</div>
-              </div>
-              <div class="bal-before">
-                <div class="bal-before-inset">
-                  <img src="./static/images/Sample4_full/PhaSR.png">
-                  <div class="bal-beforePosition beforeLabel">PhaSR (Ours)</div>
-                </div>
-              </div>
-              <div class="bal-handle">
-                <span class="handle-left-arrow"></span>
-                <span class="handle-right-arrow"></span>
+        <div class="sample-section">
+          <h3 class="title is-4">Sample 4 - Full Image</h3>
+          
+          <div class="comparison-grid">
+            <div class="comparison-item">
+              <p class="model-title">PhaSR (Ours)</p>
+              <div class="comparison-wrapper">
+                <img-comparison-slider>
+                  <img slot="first" src="./static/images/Sample4_full/input.png">
+                  <img slot="second" src="./static/images/Sample4_full/PhaSR.png">
+                </img-comparison-slider>
+                <div class="comparison-label before-label">Input</div>
+                <div class="comparison-label after-label">PhaSR</div>
               </div>
             </div>
-          </div>
 
-          <div class="image-column">
-            <div id="compare18" class="bal-container-origin">
-              <div class="bal-after">
-                <img src="./static/images/Sample4_full/input.png">
-                <div class="bal-afterPosition afterLabel">Input</div>
-              </div>
-              <div class="bal-before">
-                <div class="bal-before-inset">
-                  <img src="./static/images/Sample4_full/DenseSR.png">
-                  <div class="bal-beforePosition beforeLabel">DenseSR</div>
-                </div>
-              </div>
-              <div class="bal-handle">
-                <span class="handle-left-arrow"></span>
-                <span class="handle-right-arrow"></span>
+            <div class="comparison-item">
+              <p class="model-title">DenseSR</p>
+              <div class="comparison-wrapper">
+                <img-comparison-slider>
+                  <img slot="first" src="./static/images/Sample4_full/input.png">
+                  <img slot="second" src="./static/images/Sample4_full/DenseSR.png">
+                </img-comparison-slider>
+                <div class="comparison-label before-label">Input</div>
+                <div class="comparison-label after-label">DenseSR</div>
               </div>
             </div>
-          </div>
 
-          <div class="image-column">
-            <div id="compare19" class="bal-container-origin">
-              <div class="bal-after">
-                <img src="./static/images/Sample4_full/input.png">
-                <div class="bal-afterPosition afterLabel">Input</div>
-              </div>
-              <div class="bal-before">
-                <div class="bal-before-inset">
-                  <img src="./static/images/Sample4_full/OmniSR.png">
-                  <div class="bal-beforePosition beforeLabel">OmniSR</div>
-                </div>
-              </div>
-              <div class="bal-handle">
-                <span class="handle-left-arrow"></span>
-                <span class="handle-right-arrow"></span>
+            <div class="comparison-item">
+              <p class="model-title">OmniSR</p>
+              <div class="comparison-wrapper">
+                <img-comparison-slider>
+                  <img slot="first" src="./static/images/Sample4_full/input.png">
+                  <img slot="second" src="./static/images/Sample4_full/OmniSR.png">
+                </img-comparison-slider>
+                <div class="comparison-label before-label">Input</div>
+                <div class="comparison-label after-label">OmniSR</div>
               </div>
             </div>
-          </div>
 
-          <div class="image-column">
-            <div id="compare20" class="bal-container-origin">
-              <div class="bal-after">
-                <img src="./static/images/Sample4_full/input.png">
-                <div class="bal-afterPosition afterLabel">Input</div>
-              </div>
-              <div class="bal-before">
-                <div class="bal-before-inset">
-                  <img src="./static/images/Sample4_full/StableShadowDiffusion.png">
-                  <div class="bal-beforePosition beforeLabel">StableShadowDiffusion</div>
-                </div>
-              </div>
-              <div class="bal-handle">
-                <span class="handle-left-arrow"></span>
-                <span class="handle-right-arrow"></span>
+            <div class="comparison-item">
+              <p class="model-title">StableShadowDiffusion</p>
+              <div class="comparison-wrapper">
+                <img-comparison-slider>
+                  <img slot="first" src="./static/images/Sample4_full/input.png">
+                  <img slot="second" src="./static/images/Sample4_full/StableShadowDiffusion.png">
+                </img-comparison-slider>
+                <div class="comparison-label before-label">Input</div>
+                <div class="comparison-label after-label">StableShadowDiffusion</div>
               </div>
             </div>
           </div>
         </div>
-        <br /><br />
 
         <!-- Sample 4 Cropped -->
-        <h3 class="title is-5">Sample 4 - Cropped Region</h3>
-        
-        <div class="image-columns">
-          <div class="image-column">
-            <div id="compare21" class="bal-container-origin">
-              <div class="bal-after">
-                <img src="./static/images/Sample4_cropped/input.png">
-                <div class="bal-afterPosition afterLabel">Input</div>
-              </div>
-              <div class="bal-before">
-                <div class="bal-before-inset">
-                  <img src="./static/images/Sample4_cropped/PhaSR.png">
-                  <div class="bal-beforePosition beforeLabel">PhaSR (Ours)</div>
-                </div>
-              </div>
-              <div class="bal-handle">
-                <span class="handle-left-arrow"></span>
-                <span class="handle-right-arrow"></span>
+        <div class="sample-section">
+          <h3 class="title is-4">Sample 4 - Cropped Region</h3>
+          
+          <div class="comparison-grid">
+            <div class="comparison-item">
+              <p class="model-title">PhaSR (Ours)</p>
+              <div class="comparison-wrapper">
+                <img-comparison-slider>
+                  <img slot="first" src="./static/images/Sample4_cropped/input.png">
+                  <img slot="second" src="./static/images/Sample4_cropped/PhaSR.png">
+                </img-comparison-slider>
+                <div class="comparison-label before-label">Input</div>
+                <div class="comparison-label after-label">PhaSR</div>
               </div>
             </div>
-          </div>
 
-          <div class="image-column">
-            <div id="compare22" class="bal-container-origin">
-              <div class="bal-after">
-                <img src="./static/images/Sample4_cropped/input.png">
-                <div class="bal-afterPosition afterLabel">Input</div>
-              </div>
-              <div class="bal-before">
-                <div class="bal-before-inset">
-                  <img src="./static/images/Sample4_cropped/DenseSR.png">
-                  <div class="bal-beforePosition beforeLabel">DenseSR</div>
-                </div>
-              </div>
-              <div class="bal-handle">
-                <span class="handle-left-arrow"></span>
-                <span class="handle-right-arrow"></span>
+            <div class="comparison-item">
+              <p class="model-title">DenseSR</p>
+              <div class="comparison-wrapper">
+                <img-comparison-slider>
+                  <img slot="first" src="./static/images/Sample4_cropped/input.png">
+                  <img slot="second" src="./static/images/Sample4_cropped/DenseSR.png">
+                </img-comparison-slider>
+                <div class="comparison-label before-label">Input</div>
+                <div class="comparison-label after-label">DenseSR</div>
               </div>
             </div>
-          </div>
 
-          <div class="image-column">
-            <div id="compare23" class="bal-container-origin">
-              <div class="bal-after">
-                <img src="./static/images/Sample4_cropped/input.png">
-                <div class="bal-afterPosition afterLabel">Input</div>
-              </div>
-              <div class="bal-before">
-                <div class="bal-before-inset">
-                  <img src="./static/images/Sample4_cropped/OmniSR.png">
-                  <div class="bal-beforePosition beforeLabel">OmniSR</div>
-                </div>
-              </div>
-              <div class="bal-handle">
-                <span class="handle-left-arrow"></span>
-                <span class="handle-right-arrow"></span>
+            <div class="comparison-item">
+              <p class="model-title">OmniSR</p>
+              <div class="comparison-wrapper">
+                <img-comparison-slider>
+                  <img slot="first" src="./static/images/Sample4_cropped/input.png">
+                  <img slot="second" src="./static/images/Sample4_cropped/OmniSR.png">
+                </img-comparison-slider>
+                <div class="comparison-label before-label">Input</div>
+                <div class="comparison-label after-label">OmniSR</div>
               </div>
             </div>
-          </div>
 
-          <div class="image-column">
-            <div id="compare24" class="bal-container-origin">
-              <div class="bal-after">
-                <img src="./static/images/Sample4_cropped/input.png">
-                <div class="bal-afterPosition afterLabel">Input</div>
-              </div>
-              <div class="bal-before">
-                <div class="bal-before-inset">
-                  <img src="./static/images/Sample4_cropped/StableShadowDiffusion.png">
-                  <div class="bal-beforePosition beforeLabel">StableShadowDiffusion</div>
-                </div>
-              </div>
-              <div class="bal-handle">
-                <span class="handle-left-arrow"></span>
-                <span class="handle-right-arrow"></span>
+            <div class="comparison-item">
+              <p class="model-title">StableShadowDiffusion</p>
+              <div class="comparison-wrapper">
+                <img-comparison-slider>
+                  <img slot="first" src="./static/images/Sample4_cropped/input.png">
+                  <img slot="second" src="./static/images/Sample4_cropped/StableShadowDiffusion.png">
+                </img-comparison-slider>
+                <div class="comparison-label before-label">Input</div>
+                <div class="comparison-label after-label">StableShadowDiffusion</div>
               </div>
             </div>
           </div>
         </div>
-        <br />
 
       </div>
-      <!--/ Comparison -->
     </div>
   </div>
 </section>
@@ -768,17 +661,5 @@
   </div>
 </footer>
 
-<!-- Initialize comparison sliders after DOM is loaded -->
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM loaded, initializing sliders...');
-    
-    // Initialize all comparison sliders
-    for (let i = 1; i <= 24; i++) {
-      new BeforeAfter({ id: '#compare' + i });
-    }
-  });
-</script>
-  
 </body>
 </html>
