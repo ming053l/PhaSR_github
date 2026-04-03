@@ -445,6 +445,79 @@
           </div>
         </div>
 
+        <!-- ══ GSRA section ══ -->
+        <div class="pan-video-section" style="margin-bottom: 1.5rem;">
+          <p class="pan-video-title">⚡ Geometric-Semantic Rectification Attention (GSRA)</p>
+          <p style="font-size:0.9rem; margin-bottom:1.2rem;">
+            Real-world scenes carry two physically distinct signals that respond to illumination very differently.
+            <strong>Geometric priors</strong> (depth, surface normals from DepthAnything-v2) are sharp at shadow
+            boundaries but noisy in uniformly lit regions. <strong>Semantic embeddings</strong> (DINO-v2) stay
+            stable across lighting changes—a red apple is always semantically a red apple—but are spatially coarse.
+            GSRA harmonizes these two modalities through <em>cross-modal differential attention</em>:
+          </p>
+
+          <div style="text-align:center; margin: 0.8rem 0 1.2rem; font-size: 1.05rem;">
+            $$\mathbf{A}_\text{rect} = \mathbf{A}_\text{sem} - \lambda \cdot \mathbf{A}_\text{geo}$$
+          </div>
+
+          <p style="font-size:0.9rem; margin-bottom:1.2rem;">
+            The subtraction suppresses geometric noise in uniformly lit regions while preserving
+            geometric precision at true illumination boundaries—producing features that balance
+            local edge sharpness with global material consistency.
+          </p>
+
+          <!-- comparison grid vs OmniSR -->
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.9rem; margin-bottom:1.1rem;">
+
+            <div class="pan-step-card" style="border-top: 2px solid rgba(130,140,255,0.35);">
+              <span class="step-num" style="background:#334 !important;">OmniSR</span>
+              <div class="step-title">Geometric-semantic fusion</div>
+              <div class="step-desc" style="margin-top:0.4rem;">
+                Concatenates or additively merges geometric and semantic features without explicit
+                alignment. Under ambient or multi-source lighting, geometric noise from
+                interreflections bleeds into semantic attention, causing
+                <strong style="color:#e07070;">boundary blurring</strong> and
+                <strong style="color:#e07070;">color artifacts</strong> near shadow edges.
+              </div>
+            </div>
+
+            <div class="pan-step-card" style="border-top: 2px solid #6366f1;">
+              <span class="step-num">PhaSR (GSRA)</span>
+              <div class="step-title">Cross-modal differential rectification</div>
+              <div class="step-desc" style="margin-top:0.4rem;">
+                Explicitly subtracts geometric attention from semantic attention with a learnable
+                $\lambda$. This <em>rectification</em> gate lets the network adaptively weight
+                geometric precision (high $\lambda$ at boundaries) vs. semantic stability
+                (low $\lambda$ in smooth regions), achieving
+                <strong style="color:#7abaff;">sharper boundary localization</strong> and
+                <strong style="color:#7abaff;">cleaner reflectance recovery</strong> under
+                complex indirect illumination.
+              </div>
+            </div>
+
+          </div>
+
+          <!-- key advantages -->
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(190px,1fr)); gap:0.75rem;">
+            <div class="pan-step-card">
+              <span class="step-num">Advantage 1</span>
+              <div class="step-title">Ambient lighting generalization</div>
+              <div class="step-desc">OmniSR's fusion struggles with multi-source indirect illumination (Ambient6K: 23.01 dB). GSRA's modal decoupling reaches <strong>23.32 dB</strong> on the same benchmark.</div>
+            </div>
+            <div class="pan-step-card">
+              <span class="step-num">Advantage 2</span>
+              <div class="step-title">Shadow boundary precision</div>
+              <div class="step-desc">Geometric attention is applied as a rectifier, not a fuser—preventing semantic over-smoothing at shadow edges, visible in intermediate feature maps (Fig. 2 &amp; 17).</div>
+            </div>
+            <div class="pan-step-card">
+              <span class="step-num">Advantage 3</span>
+              <div class="step-title">Lower complexity</div>
+              <div class="step-desc">Despite richer prior integration, PhaSR achieves <strong>55.6 G FLOPs</strong> vs. OmniSR's 78.3 G—32% fewer—thanks to the lightweight asymmetric decoder design.</div>
+            </div>
+          </div>
+        </div>
+        <!-- ══ end GSRA section ══ -->
+
         <!-- ══════════════════════════════════════════════════════════════
              PAN VISUALIZATION  —  moved here from the architecture block,
              right after the architecture diagram so readers understand the
