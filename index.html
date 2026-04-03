@@ -9,29 +9,20 @@
   <meta name="google-site-verification" content="rFzh5CxQUyu-Llu6m6s6_iitGtAQvXWsiiFGvgZDNDA" />
   <title>PhaSR: Generalized Image Shadow Removal with Physically Aligned Priors</title>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-PYVRSFMDRL');
   </script>
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
   <link rel="icon" href="./static/images/icon.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/styles.css"/>
@@ -83,26 +74,74 @@
       z-index: 10;
     }
 
-    .before-label {
-      left: 6px;
+    .before-label { left: 6px; }
+    .after-label  { right: 6px; }
+
+    .sample-section { margin-bottom: 3rem; }
+
+    /* ── PAN video section ── */
+    .pan-video-section {
+      background: #f8f8fb;
+      border-left: 4px solid #5a67d8;
+      border-radius: 0 8px 8px 0;
+      padding: 1.5rem 2rem;
+      margin: 2rem 0;
     }
 
-    .after-label {
-      right: 6px;
+    .pan-video-section .pan-video-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #3730a3;
+      margin-bottom: 0.5rem;
     }
 
-    .sample-section {
-      margin-bottom: 3rem;
+    .pan-step-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.75rem;
+      margin: 1.25rem 0 1rem;
+    }
+
+    .pan-step-card {
+      background: #fff;
+      border: 1px solid #e0e0ee;
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+    }
+
+    .pan-step-card .step-num {
+      display: inline-block;
+      background: #5a67d8;
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      border-radius: 4px;
+      padding: 1px 7px;
+      margin-bottom: 6px;
+    }
+
+    .pan-step-card .step-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+    }
+
+    .pan-step-card .step-eq {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: #555;
+      margin-bottom: 4px;
+    }
+
+    .pan-step-card .step-desc {
+      font-size: 0.82rem;
+      color: #666;
+      line-height: 1.45;
     }
 
     @media (max-width: 1200px) {
-      .comparison-row {
-        flex-wrap: wrap;
-      }
-      .comparison-item {
-        flex: 1 1 45%;
-        max-width: none;
-      }
+      .comparison-row { flex-wrap: wrap; }
+      .comparison-item { flex: 1 1 45%; max-width: none; }
     }
   </style>
 
@@ -113,7 +152,7 @@
   <script src="./static/js/index.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/index.js"></script>
 </head>
-  
+
 <body>
 
 <nav class="navbar" role="navigation" aria-label="main navigation">
@@ -127,36 +166,23 @@
   <div class="navbar-menu">
     <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
       <a class="navbar-item" href="https://keunhong.com">
-      <span class="icon">
-          <i class="fas fa-home"></i>
-      </span>
+        <span class="icon"><i class="fas fa-home"></i></span>
       </a>
-
       <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More Research
-        </a>
+        <a class="navbar-link">More Research</a>
         <div class="navbar-dropdown">
-          <a class="navbar-item" href="https://hypernerf.github.io">
-            HyperNeRF
-          </a>
-          <a class="navbar-item" href="https://nerfies.github.io">
-            Nerfies
-          </a>
-          <a class="navbar-item" href="https://latentfusion.github.io">
-            LatentFusion
-          </a>
-          <a class="navbar-item" href="https://photoshape.github.io">
-            PhotoShape
-          </a>
+          <a class="navbar-item" href="https://hypernerf.github.io">HyperNeRF</a>
+          <a class="navbar-item" href="https://nerfies.github.io">Nerfies</a>
+          <a class="navbar-item" href="https://latentfusion.github.io">LatentFusion</a>
+          <a class="navbar-item" href="https://photoshape.github.io">PhotoShape</a>
         </div>
       </div>
     </div>
-
   </div>
 </nav>
 
 
+<!-- ══════════════════════════════════════════════ HERO ══ -->
 <section class="hero">
   <div class="hero-body">
     <div class="container is-max-desktop">
@@ -166,80 +192,44 @@
             <img src="./static/images/icon_white.png" alt="PhaSR Icon" class="title-icon">PhaSR: Generalized Image Shadow Removal with Physically Aligned Priors
           </h1>
           <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <a href="https://ming053l.github.io/">Chia-Ming Lee</a><sup>1,2</sup>,</span>
-            <span class="author-block">
-              <a href="https://vanlinlin.github.io/">Yu-Fan Lin</a><sup>2</sup>,</span>
-            <span class="author-block">
-              <a href="https://github.com/yujouhsiao">Yu-Jou Hsiao</a><sup>1</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://github.com/wuw2135">Jin-Hui Jiang</a><sup>2</sup>,
-            <span class="author-block">
-              <a href="https://yulunalexliu.github.io/">Yu-Lun Liu</a><sup>1</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://cchsu.info/">Chih-Chung Hsu</a><sup>1,2</sup>
-            </span>
+            <span class="author-block"><a href="https://ming053l.github.io/">Chia-Ming Lee</a><sup>1,2</sup>,</span>
+            <span class="author-block"><a href="https://vanlinlin.github.io/">Yu-Fan Lin</a><sup>2</sup>,</span>
+            <span class="author-block"><a href="https://github.com/yujouhsiao">Yu-Jou Hsiao</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="https://github.com/wuw2135">Jin-Hui Jiang</a><sup>2</sup>,</span>
+            <span class="author-block"><a href="https://yulunalexliu.github.io/">Yu-Lun Liu</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="https://cchsu.info/">Chih-Chung Hsu</a><sup>1,2</sup></span>
           </div>
-
           <div class="is-size-5 publication-authors">
             <span class="author-block"><sup>1</sup>National Yang Ming Chiao Tung University,</span>
             <span class="author-block"><sup>2</sup>National Cheng Kung University</span>
           </div>
-          
           <h1 style="font-size:24px;font-weight:bold">CVPR 2026</h1>
-          
           <div class="column has-text-centered">
             <div class="publication-links">
-              <!-- PDF Link. -->
               <span class="link-block">
-                <a href="https://arxiv.org/pdf/2601.17470"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
+                <a href="https://arxiv.org/pdf/2601.17470" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper</span>
                 </a>
               </span>
               <span class="link-block">
-                <a href="https://arxiv.org/abs/2601.17470"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
+                <a href="https://arxiv.org/abs/2601.17470" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span><span>arXiv</span>
                 </a>
               </span>
-              <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://github.com/ming053l/PhaSR"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code</span>
-                  </a>
+                <a href="https://github.com/ming053l/PhaSR" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span><span>Code</span>
+                </a>
               </span>
-              <!-- Huggingface Link. -->
               <span class="link-block">
-                <a href="https://huggingface.co/papers/2601.17470"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      🤗
-                  </span>
-                  <span>HuggingFace</span>
-                  </a>
+                <a href="https://huggingface.co/papers/2601.17470" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">🤗</span><span>HuggingFace</span>
+                </a>
               </span>
-              <!-- Dataset Link. -->
               <span class="link-block">
-                <a href="https://github.com/google/nerfies/releases/tag/0.1"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="far fa-images"></i>
-                  </span>
-                  <span>Data</span>
-                  </a>
+                <a href="https://github.com/google/nerfies/releases/tag/0.1" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="far fa-images"></i></span><span>Data</span>
+                </a>
               </span>
             </div>
           </div>
@@ -249,23 +239,26 @@
   </div>
 </section>
 
+<!-- ══════════════════════════════════════════════ TEASER ══ -->
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
       <img src="./static/images/PhaSR-motivation.png" alt="PhaSR Motivation" style="width: 100%;">
       <h2 class="subtitle has-text-centered" style="margin-top: 20px;">
-        <strong>Motivation:</strong> Existing methods lose physical priors through encoder-decoder bottlenecks, 
-        failing to localize shadows accurately (see feature visualizations above). 
-        <span class="dnerf">PhaSR</span> addresses this via <strong>dual-level physically aligned priors</strong>, 
+        <strong>Motivation:</strong> Existing methods lose physical priors through encoder-decoder bottlenecks,
+        failing to localize shadows accurately (see feature visualizations above).
+        <span class="dnerf">PhaSR</span> addresses this via <strong>dual-level physically aligned priors</strong>,
         generalizing from single-light to multi-source ambient lighting scenarios.
       </h2>
     </div>
   </div>
 </section>
 
+<!-- ══════════════════════════════════════════════ MAIN CONTENT ══ -->
 <section class="section">
   <div class="container is-max-desktop">
-    <!-- Abstract. -->
+
+    <!-- Abstract -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
@@ -275,21 +268,21 @@
             a challenge when physical priors are misaligned.
           </p>
           <p>
-            We propose <strong>PhaSR</strong> with dual-level prior alignment: 
-            <strong>(1) PAN</strong> performs parameter-free illumination correction via Gray-world normalization 
-            and log-domain Retinex decomposition, suppressing chromatic bias. 
-            <strong>(2) GSRA</strong> extends differential attention to harmonize depth-derived geometry 
+            We propose <strong>PhaSR</strong> with dual-level prior alignment:
+            <strong>(1) PAN</strong> performs parameter-free illumination correction via Gray-world normalization
+            and log-domain Retinex decomposition, suppressing chromatic bias.
+            <strong>(2) GSRA</strong> extends differential attention to harmonize depth-derived geometry
             with DINO-v2 semantics, resolving modal conflicts across illumination conditions.
           </p>
           <p>
-            Experiments demonstrate competitive performance with lower complexity, 
+            Experiments demonstrate competitive performance with lower complexity,
             generalizing to ambient lighting where traditional methods fail.
           </p>
         </div>
       </div>
     </div>
-    <!--/ Abstract. -->
 
+    <!-- Network Architecture -->
     <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-4">Network Architecture</h2>
@@ -297,28 +290,75 @@
           <img style="margin-top: -10px;" src="static/images/PhaSR_main.png">
           <div class="content has-text-justified">
             <p>
-              A multi-scale Transformer encoder-decoder integrates frozen DINO-v2 semantic features 
-              and DepthAnything-v2 geometric priors via GSRA's cross-modal differential attention 
+              A multi-scale Transformer encoder-decoder integrates frozen DINO-v2 semantic features
+              and DepthAnything-v2 geometric priors via GSRA's cross-modal differential attention
               (A<sub>rect</sub> = A<sub>sem</sub> - λ·A<sub>geo</sub>).
             </p>
           </div>
         </div>
 
-    <div align="center">
-      <video width="800" controls>
-        <source src="static/videos/PANScene.mp4" type="video/mp4">
-      </video>
-    </div>
-        
-        <h2 class="title is-4">Qualitative Results</h2>
+        <!-- ══════════════════════════════════════════════════════════════
+             PAN VISUALIZATION  —  moved here from the architecture block,
+             right after the architecture diagram so readers understand the
+             preprocessing stage before seeing qualitative results.
+        ═══════════════════════════════════════════════════════════════ -->
+        <div class="pan-video-section">
+          <p class="pan-video-title">🎬 Physically Aligned Normalization (PAN) — Distribution Visualization</p>
+          <p style="font-size:0.9rem; color:#444; margin-bottom:1rem;">
+            PAN is a <strong>parameter-free</strong> preprocessing module that corrects illumination before any
+            learned feature extraction. The animation below illustrates how PAN decomposes the input pixel
+            intensity distribution, identifies shadow pixels as <em>outliers</em> on the distribution tail,
+            and recombines the components so that those outliers are pulled back into the normal range—
+            effectively suppressing shadows without a single trainable weight.
+          </p>
+
+          <!-- step-by-step mini cards -->
+          <div class="pan-step-grid">
+            <div class="pan-step-card">
+              <span class="step-num">Step 1</span>
+              <div class="step-title">Gray-world normalization</div>
+              <div class="step-eq">I<sub>norm</sub> = I · E[I] / (E<sub>c</sub>[I] + ε)</div>
+              <div class="step-desc">Balances per-channel means to remove color cast from the illuminant (warm indoor / cool daylight), centering the distribution.</div>
+            </div>
+            <div class="pan-step-card">
+              <span class="step-num">Step 2</span>
+              <div class="step-title">Log-domain Retinex decomposition</div>
+              <div class="step-eq">log Ŝ = E<sub>H,W</sub>[log(I<sub>norm</sub> + ε)]<br>log R̂ = log(I<sub>norm</sub> + ε) − log Ŝ</div>
+              <div class="step-desc">Separates global illumination Ŝ from surface reflectance R̂ via additive log-space decomposition. Shadow pixels become extreme outliers in the R̂ distribution tail.</div>
+            </div>
+            <div class="pan-step-card">
+              <span class="step-num">Step 3</span>
+              <div class="step-title">Recombination &amp; range normalization</div>
+              <div class="step-eq">Î = (R̂ ⊗ Ŝ − min) / (max − min + ε)</div>
+              <div class="step-desc">Recombines components and applies min-max normalization. Outlier pixels on the distribution tail are pulled back into the valid radiometric range, suppressing shadow artifacts.</div>
+            </div>
+          </div>
+
+          <div align="center">
+            <video width="760" controls style="border-radius:8px; box-shadow:0 2px 12px rgba(0,0,0,0.12);">
+              <source src="static/videos/PANScene.mp4" type="video/mp4">
+            </video>
+          </div>
+          <p style="font-size:0.82rem; color:#666; text-align:center; margin-top:0.6rem;">
+            Each panel shows the pixel intensity histogram at a different stage of PAN.
+            <span style="color:#e24b4a; font-weight:600;">Red bars</span> highlight shadow outliers;
+            <span style="color:#1d9e75; font-weight:600;">teal bars</span> show the corrected output distribution.
+            The darker the residue map (GT − Î), the better the correction.
+          </p>
+        </div>
+        <!-- ══ end PAN visualization ══ -->
+
+        <h2 class="title is-4" style="margin-top:2rem;">Qualitative Results</h2>
         <div class="content has-text-justified">
           <img style="width: 960px; height: 300px;" src="static/images/PhaSR_results.png">
         </div>
+
       </div>
     </div>
   </div>
 </section>
 
+<!-- ══════════════════════════════════════════════ COMPARISON ══ -->
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
@@ -328,49 +368,45 @@
         <!-- Sample 1 -->
         <div class="sample-section">
           <h3 class="title is-4">Sample 1</h3>
-          
           <div class="comparison-row">
             <div class="comparison-item">
               <p class="model-title">PhaSR (Ours)</p>
               <div class="comparison-wrapper">
                 <img-comparison-slider>
-                  <img slot="first" src="./static/images/Sample1/input.png">
+                  <img slot="first"  src="./static/images/Sample1/input.png">
                   <img slot="second" src="./static/images/Sample1/PhaSR.png">
                 </img-comparison-slider>
                 <div class="comparison-label before-label">Input</div>
                 <div class="comparison-label after-label">PhaSR</div>
               </div>
             </div>
-
             <div class="comparison-item">
               <p class="model-title">DenseSR</p>
               <div class="comparison-wrapper">
                 <img-comparison-slider>
-                  <img slot="first" src="./static/images/Sample1/input.png">
+                  <img slot="first"  src="./static/images/Sample1/input.png">
                   <img slot="second" src="./static/images/Sample1/DenseSR.png">
                 </img-comparison-slider>
                 <div class="comparison-label before-label">Input</div>
                 <div class="comparison-label after-label">DenseSR</div>
               </div>
             </div>
-
             <div class="comparison-item">
               <p class="model-title">ShadowRefiner</p>
               <div class="comparison-wrapper">
                 <img-comparison-slider>
-                  <img slot="first" src="./static/images/Sample1/input.png">
+                  <img slot="first"  src="./static/images/Sample1/input.png">
                   <img slot="second" src="./static/images/Sample1/ShadowRefiner.png">
                 </img-comparison-slider>
                 <div class="comparison-label before-label">Input</div>
                 <div class="comparison-label after-label">ShadowRefiner</div>
               </div>
             </div>
-
             <div class="comparison-item">
               <p class="model-title">StableShadowDiffusion</p>
               <div class="comparison-wrapper">
                 <img-comparison-slider>
-                  <img slot="first" src="./static/images/Sample1/input.png">
+                  <img slot="first"  src="./static/images/Sample1/input.png">
                   <img slot="second" src="./static/images/Sample1/StableShadowDiffusion.png">
                 </img-comparison-slider>
                 <div class="comparison-label before-label">Input</div>
@@ -383,49 +419,45 @@
         <!-- Sample 2 -->
         <div class="sample-section">
           <h3 class="title is-4">Sample 2</h3>
-          
           <div class="comparison-row">
             <div class="comparison-item">
               <p class="model-title">PhaSR (Ours)</p>
               <div class="comparison-wrapper">
                 <img-comparison-slider>
-                  <img slot="first" src="./static/images/Sample2/input.png">
+                  <img slot="first"  src="./static/images/Sample2/input.png">
                   <img slot="second" src="./static/images/Sample2/PhaSR.png">
                 </img-comparison-slider>
                 <div class="comparison-label before-label">Input</div>
                 <div class="comparison-label after-label">PhaSR</div>
               </div>
             </div>
-
             <div class="comparison-item">
               <p class="model-title">DenseSR</p>
               <div class="comparison-wrapper">
                 <img-comparison-slider>
-                  <img slot="first" src="./static/images/Sample2/input.png">
+                  <img slot="first"  src="./static/images/Sample2/input.png">
                   <img slot="second" src="./static/images/Sample2/DenseSR.png">
                 </img-comparison-slider>
                 <div class="comparison-label before-label">Input</div>
                 <div class="comparison-label after-label">DenseSR</div>
               </div>
             </div>
-
             <div class="comparison-item">
               <p class="model-title">ShadowRefiner</p>
               <div class="comparison-wrapper">
                 <img-comparison-slider>
-                  <img slot="first" src="./static/images/Sample2/input.png">
+                  <img slot="first"  src="./static/images/Sample2/input.png">
                   <img slot="second" src="./static/images/Sample2/ShadowRefiner.png">
                 </img-comparison-slider>
                 <div class="comparison-label before-label">Input</div>
                 <div class="comparison-label after-label">ShadowRefiner</div>
               </div>
             </div>
-
             <div class="comparison-item">
               <p class="model-title">StableShadowDiffusion</p>
               <div class="comparison-wrapper">
                 <img-comparison-slider>
-                  <img slot="first" src="./static/images/Sample2/input.png">
+                  <img slot="first"  src="./static/images/Sample2/input.png">
                   <img slot="second" src="./static/images/Sample2/StableShadowDiffusion.png">
                 </img-comparison-slider>
                 <div class="comparison-label before-label">Input</div>
@@ -440,49 +472,45 @@
         <!-- Sample 3 Full -->
         <div class="sample-section">
           <h3 class="title is-4">Sample 3 - Full Image</h3>
-          
           <div class="comparison-row">
             <div class="comparison-item">
               <p class="model-title">PhaSR (Ours)</p>
               <div class="comparison-wrapper">
                 <img-comparison-slider>
-                  <img slot="first" src="./static/images/Sample3_full/input.png">
+                  <img slot="first"  src="./static/images/Sample3_full/input.png">
                   <img slot="second" src="./static/images/Sample3_full/PhaSR.png">
                 </img-comparison-slider>
                 <div class="comparison-label before-label">Input</div>
                 <div class="comparison-label after-label">PhaSR</div>
               </div>
             </div>
-
             <div class="comparison-item">
               <p class="model-title">DenseSR</p>
               <div class="comparison-wrapper">
                 <img-comparison-slider>
-                  <img slot="first" src="./static/images/Sample3_full/input.png">
+                  <img slot="first"  src="./static/images/Sample3_full/input.png">
                   <img slot="second" src="./static/images/Sample3_full/DenseSR.png">
                 </img-comparison-slider>
                 <div class="comparison-label before-label">Input</div>
                 <div class="comparison-label after-label">DenseSR</div>
               </div>
             </div>
-
             <div class="comparison-item">
               <p class="model-title">OmniSR</p>
               <div class="comparison-wrapper">
                 <img-comparison-slider>
-                  <img slot="first" src="./static/images/Sample3_full/input.png">
+                  <img slot="first"  src="./static/images/Sample3_full/input.png">
                   <img slot="second" src="./static/images/Sample3_full/OmniSR.png">
                 </img-comparison-slider>
                 <div class="comparison-label before-label">Input</div>
                 <div class="comparison-label after-label">OmniSR</div>
               </div>
             </div>
-
             <div class="comparison-item">
               <p class="model-title">StableShadowDiffusion</p>
               <div class="comparison-wrapper">
                 <img-comparison-slider>
-                  <img slot="first" src="./static/images/Sample3_full/input.png">
+                  <img slot="first"  src="./static/images/Sample3_full/input.png">
                   <img slot="second" src="./static/images/Sample3_full/StableShadowDiffusion.png">
                 </img-comparison-slider>
                 <div class="comparison-label before-label">Input</div>
@@ -495,49 +523,45 @@
         <!-- Sample 3 Cropped -->
         <div class="sample-section">
           <h3 class="title is-4">Sample 3 - Cropped Region</h3>
-          
           <div class="comparison-row">
             <div class="comparison-item">
               <p class="model-title">PhaSR (Ours)</p>
               <div class="comparison-wrapper">
                 <img-comparison-slider>
-                  <img slot="first" src="./static/images/Sample3_cropped/input.png">
+                  <img slot="first"  src="./static/images/Sample3_cropped/input.png">
                   <img slot="second" src="./static/images/Sample3_cropped/PhaSR.png">
                 </img-comparison-slider>
                 <div class="comparison-label before-label">Input</div>
                 <div class="comparison-label after-label">PhaSR</div>
               </div>
             </div>
-
             <div class="comparison-item">
               <p class="model-title">DenseSR</p>
               <div class="comparison-wrapper">
                 <img-comparison-slider>
-                  <img slot="first" src="./static/images/Sample3_cropped/input.png">
+                  <img slot="first"  src="./static/images/Sample3_cropped/input.png">
                   <img slot="second" src="./static/images/Sample3_cropped/DenseSR.png">
                 </img-comparison-slider>
                 <div class="comparison-label before-label">Input</div>
                 <div class="comparison-label after-label">DenseSR</div>
               </div>
             </div>
-
             <div class="comparison-item">
               <p class="model-title">OmniSR</p>
               <div class="comparison-wrapper">
                 <img-comparison-slider>
-                  <img slot="first" src="./static/images/Sample3_cropped/input.png">
+                  <img slot="first"  src="./static/images/Sample3_cropped/input.png">
                   <img slot="second" src="./static/images/Sample3_cropped/OmniSR.png">
                 </img-comparison-slider>
                 <div class="comparison-label before-label">Input</div>
                 <div class="comparison-label after-label">OmniSR</div>
               </div>
             </div>
-
             <div class="comparison-item">
               <p class="model-title">StableShadowDiffusion</p>
               <div class="comparison-wrapper">
                 <img-comparison-slider>
-                  <img slot="first" src="./static/images/Sample3_cropped/input.png">
+                  <img slot="first"  src="./static/images/Sample3_cropped/input.png">
                   <img slot="second" src="./static/images/Sample3_cropped/StableShadowDiffusion.png">
                 </img-comparison-slider>
                 <div class="comparison-label before-label">Input</div>
@@ -550,49 +574,45 @@
         <!-- Sample 4 Full -->
         <div class="sample-section">
           <h3 class="title is-4">Sample 4 - Full Image</h3>
-          
           <div class="comparison-row">
             <div class="comparison-item">
               <p class="model-title">PhaSR (Ours)</p>
               <div class="comparison-wrapper">
                 <img-comparison-slider>
-                  <img slot="first" src="./static/images/Sample4_full/input.png">
+                  <img slot="first"  src="./static/images/Sample4_full/input.png">
                   <img slot="second" src="./static/images/Sample4_full/PhaSR.png">
                 </img-comparison-slider>
                 <div class="comparison-label before-label">Input</div>
                 <div class="comparison-label after-label">PhaSR</div>
               </div>
             </div>
-
             <div class="comparison-item">
               <p class="model-title">DenseSR</p>
               <div class="comparison-wrapper">
                 <img-comparison-slider>
-                  <img slot="first" src="./static/images/Sample4_full/input.png">
+                  <img slot="first"  src="./static/images/Sample4_full/input.png">
                   <img slot="second" src="./static/images/Sample4_full/DenseSR.png">
                 </img-comparison-slider>
                 <div class="comparison-label before-label">Input</div>
                 <div class="comparison-label after-label">DenseSR</div>
               </div>
             </div>
-
             <div class="comparison-item">
               <p class="model-title">OmniSR</p>
               <div class="comparison-wrapper">
                 <img-comparison-slider>
-                  <img slot="first" src="./static/images/Sample4_full/input.png">
+                  <img slot="first"  src="./static/images/Sample4_full/input.png">
                   <img slot="second" src="./static/images/Sample4_full/OmniSR.png">
                 </img-comparison-slider>
                 <div class="comparison-label before-label">Input</div>
                 <div class="comparison-label after-label">OmniSR</div>
               </div>
             </div>
-
             <div class="comparison-item">
               <p class="model-title">StableShadowDiffusion</p>
               <div class="comparison-wrapper">
                 <img-comparison-slider>
-                  <img slot="first" src="./static/images/Sample4_full/input.png">
+                  <img slot="first"  src="./static/images/Sample4_full/input.png">
                   <img slot="second" src="./static/images/Sample4_full/StableShadowDiffusion.png">
                 </img-comparison-slider>
                 <div class="comparison-label before-label">Input</div>
@@ -605,49 +625,45 @@
         <!-- Sample 4 Cropped -->
         <div class="sample-section">
           <h3 class="title is-4">Sample 4 - Cropped Region</h3>
-          
           <div class="comparison-row">
             <div class="comparison-item">
               <p class="model-title">PhaSR (Ours)</p>
               <div class="comparison-wrapper">
                 <img-comparison-slider>
-                  <img slot="first" src="./static/images/Sample4_cropped/input.png">
+                  <img slot="first"  src="./static/images/Sample4_cropped/input.png">
                   <img slot="second" src="./static/images/Sample4_cropped/PhaSR.png">
                 </img-comparison-slider>
                 <div class="comparison-label before-label">Input</div>
                 <div class="comparison-label after-label">PhaSR</div>
               </div>
             </div>
-
             <div class="comparison-item">
               <p class="model-title">DenseSR</p>
               <div class="comparison-wrapper">
                 <img-comparison-slider>
-                  <img slot="first" src="./static/images/Sample4_cropped/input.png">
+                  <img slot="first"  src="./static/images/Sample4_cropped/input.png">
                   <img slot="second" src="./static/images/Sample4_cropped/DenseSR.png">
                 </img-comparison-slider>
                 <div class="comparison-label before-label">Input</div>
                 <div class="comparison-label after-label">DenseSR</div>
               </div>
             </div>
-
             <div class="comparison-item">
               <p class="model-title">OmniSR</p>
               <div class="comparison-wrapper">
                 <img-comparison-slider>
-                  <img slot="first" src="./static/images/Sample4_cropped/input.png">
+                  <img slot="first"  src="./static/images/Sample4_cropped/input.png">
                   <img slot="second" src="./static/images/Sample4_cropped/OmniSR.png">
                 </img-comparison-slider>
                 <div class="comparison-label before-label">Input</div>
                 <div class="comparison-label after-label">OmniSR</div>
               </div>
             </div>
-
             <div class="comparison-item">
               <p class="model-title">StableShadowDiffusion</p>
               <div class="comparison-wrapper">
                 <img-comparison-slider>
-                  <img slot="first" src="./static/images/Sample4_cropped/input.png">
+                  <img slot="first"  src="./static/images/Sample4_cropped/input.png">
                   <img slot="second" src="./static/images/Sample4_cropped/StableShadowDiffusion.png">
                 </img-comparison-slider>
                 <div class="comparison-label before-label">Input</div>
@@ -662,7 +678,8 @@
   </div>
 </section>
 
-  
+
+<!-- ══════════════════════════════════════════════ BIBTEX ══ -->
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
@@ -678,7 +695,8 @@
   </div>
 </section>
 
-  
+
+<!-- ══════════════════════════════════════════════ FOOTER ══ -->
 <footer class="footer">
   <div class="container">
     <div class="columns is-centered">
@@ -687,19 +705,22 @@
           This page is modified from the <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> template.
         </p>
         <p>
-          Our work builds upon <a href="https://blackjoke76.github.io/Projects/OmniSR/">OmniSR</a>, 
-          <a href="https://github.com/VanLinLin/DenseSR">DenseSR</a>, and 
-          <a href="https://arxiv.org/abs/2410.05258">Differential Transformer</a>. 
+          Our work builds upon <a href="https://blackjoke76.github.io/Projects/OmniSR/">OmniSR</a>,
+          <a href="https://github.com/VanLinLin/DenseSR">DenseSR</a>, and
+          <a href="https://arxiv.org/abs/2410.05258">Differential Transformer</a>.
           We are grateful for their outstanding contributions.
         </p>
         <p>
-          This study was supported in part by the National Science and Technology Council (NSTC), Taiwan, under grants 112-2221-E-006-157-MY3, 114-2627-M-A49-003, 114-2218-E-035-001, and 114-2119-M-006-007. We thank the National Center for High-performance Computing (NCHC) of National Applied Research Laboratories (NARLabs) in Taiwan for providing computational and storage resources.
+          This study was supported in part by the National Science and Technology Council (NSTC), Taiwan,
+          under grants 112-2221-E-006-157-MY3, 114-2627-M-A49-003, 114-2218-E-035-001, and
+          114-2119-M-006-007. We thank the National Center for High-performance Computing (NCHC) of
+          National Applied Research Laboratories (NARLabs) in Taiwan for providing computational and
+          storage resources.
         </p>
       </div>
     </div>
   </div>
 </footer>
-
 
 </body>
 </html>
