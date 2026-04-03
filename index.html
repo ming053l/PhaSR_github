@@ -145,10 +145,9 @@
     }
 
     /* ═══════════════════════════════════════════
-       STYLIZED BACKGROUND — shadow-to-light theme
+       STYLIZED BACKGROUND — starfield, top dark → bottom light
     ═══════════════════════════════════════════ */
 
-    /* canvas sits behind everything */
     #bg-canvas {
       position: fixed;
       top: 0; left: 0;
@@ -157,84 +156,97 @@
       pointer-events: none;
     }
 
-    /* overall page tone */
-    html, body {
-      background: #0d0f18;
-    }
+    html, body { background: #0a0a0e; }
 
-    /* navbar blend */
+    /* ── navbar: dark glass at top ── */
     .navbar {
-      background: rgba(13, 15, 24, 0.82) !important;
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: rgba(8, 8, 14, 0.80) !important;
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
     }
-    .navbar-item, .navbar-link { color: #c8cde8 !important; }
-    .navbar-dropdown { background: rgba(20, 22, 36, 0.96) !important; }
+    .navbar-item, .navbar-link { color: #d4d8f0 !important; }
+    .navbar-dropdown {
+      background: rgba(16, 16, 26, 0.97) !important;
+      border: 1px solid rgba(255,255,255,0.08) !important;
+    }
+    .navbar-dropdown .navbar-item { color: #b0b8d8 !important; }
+    .navbar-dropdown .navbar-item:hover { background: rgba(255,255,255,0.06) !important; color: #fff !important; }
 
-    /* hero / teaser */
+    /* ── hero at top: white text on dark ── */
     .hero { background: transparent !important; }
-    .hero .title, .hero .subtitle,
-    .publication-title { color: #e8eaf6 !important; }
-    .publication-authors a,
-    .publication-authors span { color: #a5b4fc !important; }
-    .is-size-5.publication-authors span.author-block { color: #94a3b8 !important; }
+    .publication-title,
+    .hero .title  { color: #f0f2ff !important; text-shadow: 0 2px 24px rgba(180,190,255,0.18); }
+    .publication-authors a { color: #a5b4fc !important; }
+    .publication-authors .author-block { color: #8899cc !important; }
+    .hero .subtitle { color: #c0cce8 !important; }
 
-    /* content sections */
+    /* ── sections: transparent so gradient shows through ── */
     .section { background: transparent !important; }
 
-    /* card-like containers */
-    .container.is-max-desktop > .columns,
-    .column.is-full-width {
-      position: relative;
-    }
+    /* ── mid-page text: dark enough to read on iron-gray ── */
+    h2.title, h3.title, h4.title { color: #1a1f3c !important; }
+    .content p, .content li, p   { color: #2a3050 !important; }
+    .subtitle                     { color: #3a4060 !important; }
 
-    /* prose text */
-    .content p, .content li,
-    .subtitle, p {
-      color: #cbd5e1 !important;
-    }
-    h2.title, h3.title, h4.title {
-      color: #e2e8f0 !important;
-    }
+    /* hero teaser subtitle is still near top so keep it light */
+    .hero-body .subtitle { color: #c0cce8 !important; }
+    .hero-body strong    { color: #e8eeff !important; }
 
-    /* PAN section on dark bg */
+    /* abstract section sits in mid-page — dark text */
+    .columns.is-centered .content p { color: #23294a !important; }
+
+    /* ── PAN card: semi-transparent, readable on any bg ── */
     .pan-video-section {
-      background: rgba(30, 35, 65, 0.75) !important;
-      border-left: 4px solid #818cf8 !important;
-      backdrop-filter: blur(8px);
+      background: rgba(255,255,255,0.72) !important;
+      border-left: 4px solid #5a67d8 !important;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 32px rgba(0,0,0,0.10);
     }
-    .pan-video-section .pan-video-title { color: #a5b4fc !important; }
+    .pan-video-section .pan-video-title { color: #3730a3 !important; }
+    .pan-video-section > p              { color: #334 !important; }
     .pan-step-card {
-      background: rgba(15, 18, 40, 0.82) !important;
-      border-color: rgba(129, 140, 248, 0.25) !important;
+      background: rgba(255,255,255,0.88) !important;
+      border-color: rgba(90,103,216,0.22) !important;
     }
-    .pan-step-card .step-title { color: #e0e7ff !important; }
-    .pan-step-card .step-desc  { color: #94a3b8 !important; }
-    .pan-step-card .step-num   { background: #6366f1 !important; }
+    .pan-step-card .step-title { color: #1e1b4b !important; }
+    .pan-step-card .step-desc  { color: #475569 !important; }
+    .pan-step-card .step-num   { background: #5a67d8 !important; color: #fff !important; }
+    .pan-step-card .step-eq    { color: #334 !important; }
 
-    /* buttons */
+    /* ── buttons (near top = dark bg → light style) ── */
     .button.is-dark {
-      background: rgba(99, 102, 241, 0.18) !important;
-      border: 1px solid rgba(129, 140, 248, 0.45) !important;
-      color: #c7d2fe !important;
+      background: rgba(255,255,255,0.10) !important;
+      border: 1px solid rgba(255,255,255,0.28) !important;
+      color: #e8eeff !important;
       backdrop-filter: blur(4px);
       transition: background 0.2s, border-color 0.2s;
     }
     .button.is-dark:hover {
-      background: rgba(99, 102, 241, 0.38) !important;
-      border-color: #818cf8 !important;
+      background: rgba(255,255,255,0.22) !important;
+      border-color: rgba(255,255,255,0.55) !important;
     }
 
-    /* bibtex block */
-    pre { background: rgba(15,18,40,0.85) !important; color: #a5b4fc !important; border: 1px solid rgba(129,140,248,0.2) !important; }
+    /* ── bibtex: near bottom = light bg → dark text ── */
+    pre {
+      background: rgba(240,242,255,0.80) !important;
+      color: #1e1b4b !important;
+      border: 1px solid rgba(90,103,216,0.18) !important;
+      backdrop-filter: blur(6px);
+    }
 
-    /* footer */
-    .footer { background: rgba(8, 9, 18, 0.9) !important; }
-    .footer p, .footer a { color: #64748b !important; }
-    .footer a:hover { color: #818cf8 !important; }
+    /* ── footer: near-white at very bottom ── */
+    .footer {
+      background: rgba(245,247,255,0.85) !important;
+      backdrop-filter: blur(10px);
+    }
+    .footer p, .footer p a { color: #64748b !important; }
+    .footer p a:hover       { color: #4338ca !important; }
 
-    /* sample section titles */
-    .model-title { color: #cbd5e1 !important; }
+    /* ── sample section comparison labels ── */
+    .model-title { color: #1e2040 !important; }
+
+    /* ── section heading in comparison area (near bottom) ── */
+    .sample-section h3.title { color: #1a1f3c !important; }
   </style>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -264,7 +276,7 @@
   </div>
   <div class="navbar-menu">
     <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="https://keunhong.com">
+      <a class="navbar-item" href="https://ming053l.github.io/">
         <span class="icon"><i class="fas fa-home"></i></span>
       </a>
       <div class="navbar-item has-dropdown is-hoverable">
@@ -832,95 +844,111 @@
   const canvas = document.getElementById('bg-canvas');
   const ctx    = canvas.getContext('2d');
 
-  let W, H;
+  let W, H, stars = [], shooters = [];
+
+  /* ── build star field once ── */
+  function buildStars() {
+    stars = [];
+    const count = Math.floor((W * H) / 3800);
+    for (let i = 0; i < count; i++) {
+      const yNorm = Math.random();           /* 0 = top, 1 = bottom */
+      /* stars only appear in upper ~72% where bg is still dark enough */
+      const y = Math.random() * H * 0.72;
+      const r = 0.3 + Math.random() * 1.1;
+      /* dimmer toward mid-page as bg brightens */
+      const maxOpa = 0.85 - yNorm * 1.1;
+      const opa = Math.max(0, maxOpa) * (0.4 + Math.random() * 0.6);
+      /* mostly white/blue-white, rare warm */
+      const warm  = Math.random() < 0.08;
+      const hue   = warm ? 40 + Math.random() * 20 : 200 + Math.random() * 50;
+      const lum   = 88 + Math.random() * 12;
+      stars.push({ x: Math.random() * W, y, r, opa, hue, lum,
+                   twinklePhase: Math.random() * Math.PI * 2,
+                   twinkleSpd:   0.008 + Math.random() * 0.018 });
+    }
+  }
+
+  /* ── shooting star factory ── */
+  function makeShooter() {
+    const x     = Math.random() * W * 0.9;
+    const y     = Math.random() * H * 0.35;
+    const angle = Math.PI / 5 + Math.random() * Math.PI / 8;
+    const speed = 6 + Math.random() * 8;
+    const len   = 80 + Math.random() * 120;
+    return { x, y, angle, speed, len, life: 1.0, decay: 0.022 + Math.random() * 0.018 };
+  }
+
   function resize() {
     W = canvas.width  = window.innerWidth;
     H = canvas.height = window.innerHeight;
+    buildStars();
   }
   resize();
   window.addEventListener('resize', resize);
 
-  /* ── particles: tiny light motes drifting upward ── */
-  const N = 110;
-  const particles = Array.from({ length: N }, () => makeParticle(true));
-
-  function makeParticle(randomY) {
-    const x  = Math.random() * (window.innerWidth  || 1400);
-    const y  = randomY ? Math.random() * (window.innerHeight || 900)
-                       : (window.innerHeight || 900) + 10;
-    const r  = 0.6 + Math.random() * 1.8;
-    const spd = 0.18 + Math.random() * 0.45;
-    const drift = (Math.random() - 0.5) * 0.25;
-    /* hue: mostly cold indigo/violet, occasional warm amber for "light ray" */
-    const warm = Math.random() < 0.12;
-    const hue  = warm ? 38 + Math.random() * 20 : 220 + Math.random() * 60;
-    const sat  = warm ? 80 : 55 + Math.random() * 30;
-    const lum  = 65 + Math.random() * 25;
-    const opa  = 0.12 + Math.random() * 0.45;
-    return { x, y, r, spd, drift, hue, sat, lum, opa, phase: Math.random() * Math.PI * 2 };
-  }
-
-  /* ── light-ray beams: 3–5 soft diagonal shafts ── */
-  const RAYS = 4;
-  const rays = Array.from({ length: RAYS }, (_, i) => ({
-    x:     0.15 + i * 0.22,   /* normalised x origin at top */
-    angle: -0.38 + i * 0.18,  /* slight spread */
-    width: 60 + Math.random() * 80,
-    opa:   0.018 + Math.random() * 0.022,
-    hue:   210 + Math.random() * 50,
-  }));
+  /* spawn a shooter every ~4–8 s */
+  setInterval(() => {
+    if (shooters.length < 3) shooters.push(makeShooter());
+  }, 4200 + Math.random() * 3800);
 
   let tick = 0;
 
   function draw() {
-    /* dark sky gradient — shifts very slowly */
-    const t = tick * 0.0003;
-    const grd = ctx.createLinearGradient(0, 0, W, H);
-    grd.addColorStop(0,   `hsl(${232 + Math.sin(t) * 4}, 28%, ${7  + Math.sin(t * 0.7) * 1.5}%)`);
-    grd.addColorStop(0.5, `hsl(${245 + Math.cos(t) * 3}, 22%, ${10 + Math.cos(t * 0.5) * 1}%)`);
-    grd.addColorStop(1,   `hsl(${220 + Math.sin(t) * 5}, 18%, 6%)`);
+    /* ── vertical gradient: black → iron-gray → near-white ── */
+    const grd = ctx.createLinearGradient(0, 0, 0, H);
+    grd.addColorStop(0.00, '#06060a');      /* deep black at very top */
+    grd.addColorStop(0.18, '#0e0f18');      /* dark navy-black */
+    grd.addColorStop(0.42, '#1c1e2e');      /* dark slate */
+    grd.addColorStop(0.62, '#3a3d52');      /* iron gray */
+    grd.addColorStop(0.78, '#7a7e95');      /* medium gray */
+    grd.addColorStop(0.90, '#c4c7d8');      /* light silver */
+    grd.addColorStop(1.00, '#eeeef6');      /* near-white at bottom */
     ctx.fillStyle = grd;
     ctx.fillRect(0, 0, W, H);
 
-    /* light shafts */
-    rays.forEach(ray => {
-      const ox = ray.x * W;
-      const pulse = 0.7 + 0.3 * Math.sin(tick * 0.0008 + ray.angle * 10);
-      const g2 = ctx.createLinearGradient(ox, 0, ox + Math.tan(ray.angle) * H, H);
-      g2.addColorStop(0,   `hsla(${ray.hue}, 60%, 72%, ${ray.opa * pulse * 1.4})`);
-      g2.addColorStop(0.4, `hsla(${ray.hue}, 55%, 65%, ${ray.opa * pulse})`);
-      g2.addColorStop(1,   `hsla(${ray.hue}, 50%, 60%, 0)`);
-      ctx.save();
-      ctx.translate(ox, 0);
-      ctx.rotate(ray.angle);
-      ctx.fillStyle = g2;
-      ctx.beginPath();
-      ctx.rect(-ray.width / 2, 0, ray.width, H * 1.5);
-      ctx.fill();
-      ctx.restore();
-    });
+    /* ── stars with gentle twinkling ── */
+    stars.forEach(s => {
+      s.twinklePhase += s.twinkleSpd;
+      const tw  = 0.72 + 0.28 * Math.sin(s.twinklePhase);
+      const opa = s.opa * tw;
+      if (opa <= 0) return;
 
-    /* particles */
-    particles.forEach(p => {
-      const flicker = 0.75 + 0.25 * Math.sin(tick * 0.04 + p.phase);
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `hsla(${p.hue}, ${p.sat}%, ${p.lum}%, ${p.opa * flicker})`;
-      ctx.fill();
-
-      /* subtle glow ring for the brighter ones */
-      if (p.opa > 0.38) {
+      /* soft glow for brighter stars */
+      if (s.opa > 0.55) {
+        const glow = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.r * 4.5);
+        glow.addColorStop(0, `hsla(${s.hue}, 60%, ${s.lum}%, ${opa * 0.35})`);
+        glow.addColorStop(1, `hsla(${s.hue}, 50%, ${s.lum}%, 0)`);
+        ctx.fillStyle = glow;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r * 3.5, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(${p.hue}, ${p.sat}%, ${p.lum}%, ${p.opa * 0.08 * flicker})`;
+        ctx.arc(s.x, s.y, s.r * 4.5, 0, Math.PI * 2);
         ctx.fill();
       }
 
-      p.y   -= p.spd;
-      p.x   += p.drift;
-      p.phase += 0.022;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `hsla(${s.hue}, 55%, ${s.lum}%, ${opa})`;
+      ctx.fill();
+    });
 
-      if (p.y < -10) Object.assign(p, makeParticle(false));
+    /* ── shooting stars ── */
+    shooters = shooters.filter(s => s.life > 0);
+    shooters.forEach(s => {
+      const ex = s.x + Math.cos(s.angle) * s.len;
+      const ey = s.y + Math.sin(s.angle) * s.len;
+      const trail = ctx.createLinearGradient(s.x, s.y, ex, ey);
+      trail.addColorStop(0,   `rgba(255,255,255,0)`);
+      trail.addColorStop(0.6, `rgba(220,228,255,${s.life * 0.55})`);
+      trail.addColorStop(1,   `rgba(255,255,255,${s.life * 0.9})`);
+      ctx.strokeStyle = trail;
+      ctx.lineWidth   = 1.2;
+      ctx.beginPath();
+      ctx.moveTo(s.x, s.y);
+      ctx.lineTo(ex, ey);
+      ctx.stroke();
+
+      s.x    += Math.cos(s.angle) * s.speed;
+      s.y    += Math.sin(s.angle) * s.speed;
+      s.life -= s.decay;
     });
 
     tick++;
