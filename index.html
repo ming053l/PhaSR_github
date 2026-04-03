@@ -143,6 +143,98 @@
       .comparison-row { flex-wrap: wrap; }
       .comparison-item { flex: 1 1 45%; max-width: none; }
     }
+
+    /* ═══════════════════════════════════════════
+       STYLIZED BACKGROUND — shadow-to-light theme
+    ═══════════════════════════════════════════ */
+
+    /* canvas sits behind everything */
+    #bg-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* overall page tone */
+    html, body {
+      background: #0d0f18;
+    }
+
+    /* navbar blend */
+    .navbar {
+      background: rgba(13, 15, 24, 0.82) !important;
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .navbar-item, .navbar-link { color: #c8cde8 !important; }
+    .navbar-dropdown { background: rgba(20, 22, 36, 0.96) !important; }
+
+    /* hero / teaser */
+    .hero { background: transparent !important; }
+    .hero .title, .hero .subtitle,
+    .publication-title { color: #e8eaf6 !important; }
+    .publication-authors a,
+    .publication-authors span { color: #a5b4fc !important; }
+    .is-size-5.publication-authors span.author-block { color: #94a3b8 !important; }
+
+    /* content sections */
+    .section { background: transparent !important; }
+
+    /* card-like containers */
+    .container.is-max-desktop > .columns,
+    .column.is-full-width {
+      position: relative;
+    }
+
+    /* prose text */
+    .content p, .content li,
+    .subtitle, p {
+      color: #cbd5e1 !important;
+    }
+    h2.title, h3.title, h4.title {
+      color: #e2e8f0 !important;
+    }
+
+    /* PAN section on dark bg */
+    .pan-video-section {
+      background: rgba(30, 35, 65, 0.75) !important;
+      border-left: 4px solid #818cf8 !important;
+      backdrop-filter: blur(8px);
+    }
+    .pan-video-section .pan-video-title { color: #a5b4fc !important; }
+    .pan-step-card {
+      background: rgba(15, 18, 40, 0.82) !important;
+      border-color: rgba(129, 140, 248, 0.25) !important;
+    }
+    .pan-step-card .step-title { color: #e0e7ff !important; }
+    .pan-step-card .step-desc  { color: #94a3b8 !important; }
+    .pan-step-card .step-num   { background: #6366f1 !important; }
+
+    /* buttons */
+    .button.is-dark {
+      background: rgba(99, 102, 241, 0.18) !important;
+      border: 1px solid rgba(129, 140, 248, 0.45) !important;
+      color: #c7d2fe !important;
+      backdrop-filter: blur(4px);
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .button.is-dark:hover {
+      background: rgba(99, 102, 241, 0.38) !important;
+      border-color: #818cf8 !important;
+    }
+
+    /* bibtex block */
+    pre { background: rgba(15,18,40,0.85) !important; color: #a5b4fc !important; border: 1px solid rgba(129,140,248,0.2) !important; }
+
+    /* footer */
+    .footer { background: rgba(8, 9, 18, 0.9) !important; }
+    .footer p, .footer a { color: #64748b !important; }
+    .footer a:hover { color: #818cf8 !important; }
+
+    /* sample section titles */
+    .model-title { color: #cbd5e1 !important; }
   </style>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -151,6 +243,13 @@
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/index.js"></script>
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
 
 <body>
@@ -227,8 +326,8 @@
                 </a>
               </span>
               <span class="link-block">
-                <a href="https://github.com/google/nerfies/releases/tag/0.1" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><i class="far fa-images"></i></span><span>Data</span>
+                <a href="https://drive.google.com/drive/folders/10h6CxVZpJGEkXd7g0e1HLTvibehOT-fq?usp=sharing" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-database"></i></span><span>Model Zoo</span>
                 </a>
               </span>
             </div>
@@ -292,7 +391,7 @@
             <p>
               A multi-scale Transformer encoder-decoder integrates frozen DINO-v2 semantic features
               and DepthAnything-v2 geometric priors via GSRA's cross-modal differential attention
-              (A<sub>rect</sub> = A<sub>sem</sub> - λ·A<sub>geo</sub>).
+              ($\mathbf{A}_\text{rect} = \mathbf{A}_\text{sem} - \lambda \cdot \mathbf{A}_\text{geo}$).
             </p>
           </div>
         </div>
@@ -317,19 +416,19 @@
             <div class="pan-step-card">
               <span class="step-num">Step 1</span>
               <div class="step-title">Gray-world normalization</div>
-              <div class="step-eq">I<sub>norm</sub> = I · E[I] / (E<sub>c</sub>[I] + ε)</div>
+              <div class="step-eq">$$\mathbf{I}_\text{norm} = \mathbf{I} \cdot \frac{\mathbb{E}[\mathbf{I}]}{\mathbb{E}_c[\mathbf{I}] + \varepsilon}$$</div>
               <div class="step-desc">Balances per-channel means to remove color cast from the illuminant (warm indoor / cool daylight), centering the distribution.</div>
             </div>
             <div class="pan-step-card">
               <span class="step-num">Step 2</span>
               <div class="step-title">Log-domain Retinex decomposition</div>
-              <div class="step-eq">log Ŝ = E<sub>H,W</sub>[log(I<sub>norm</sub> + ε)]<br>log R̂ = log(I<sub>norm</sub> + ε) − log Ŝ</div>
-              <div class="step-desc">Separates global illumination Ŝ from surface reflectance R̂ via additive log-space decomposition. Shadow pixels become extreme outliers in the R̂ distribution tail.</div>
+              <div class="step-eq">$$\log \hat{S} = \mathbb{E}_{H,W}[\log(\mathbf{I}_\text{norm} + \varepsilon)]$$$$\log \hat{R} = \log(\mathbf{I}_\text{norm} + \varepsilon) - \log \hat{S}$$</div>
+              <div class="step-desc">Separates global illumination $\hat{S}$ from surface reflectance $\hat{R}$ via additive log-space decomposition. Shadow pixels become extreme outliers in the $\hat{R}$ distribution tail.</div>
             </div>
             <div class="pan-step-card">
               <span class="step-num">Step 3</span>
               <div class="step-title">Recombination &amp; range normalization</div>
-              <div class="step-eq">Î = (R̂ ⊗ Ŝ − min) / (max − min + ε)</div>
+              <div class="step-eq">$$\hat{I} = \frac{\hat{R} \otimes \hat{S} - \min(\hat{R} \otimes \hat{S})}{\max(\hat{R} \otimes \hat{S}) - \min(\hat{R} \otimes \hat{S}) + \varepsilon}$$</div>
               <div class="step-desc">Recombines components and applies min-max normalization. Outlier pixels on the distribution tail are pulled back into the valid radiometric range, suppressing shadow artifacts.</div>
             </div>
           </div>
@@ -341,8 +440,10 @@
           </div>
           <p style="font-size:0.82rem; color:#666; text-align:center; margin-top:0.6rem;">
             Each panel shows the pixel intensity histogram at a different stage of PAN.
-            <span style="color:#e24b4a; font-weight:600;">Red bars</span> highlight shadow outliers;
-            <span style="color:#1d9e75; font-weight:600;">teal bars</span> show the corrected output distribution.
+            <span style="color:#e24b4a; font-weight:600;">Red bars</span> represent shadow-region pixels clustered at the low-brightness end;
+            <span style="color:#378add; font-weight:600;">blue bars</span> represent the normal (non-shadow) distribution.
+            After PAN, the red distribution shifts toward brighter values—shadows become less dark—
+            and the two distributions converge into a more uniform output.
             The darker the residue map (GT − Î), the better the correction.
           </p>
         </div>
@@ -721,6 +822,112 @@
     </div>
   </div>
 </footer>
+
+<!-- ═══════════════════════ BACKGROUND CANVAS ═══════════════════════ -->
+<canvas id="bg-canvas"></canvas>
+<script>
+(function () {
+  const canvas = document.getElementById('bg-canvas');
+  const ctx    = canvas.getContext('2d');
+
+  let W, H;
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  /* ── particles: tiny light motes drifting upward ── */
+  const N = 110;
+  const particles = Array.from({ length: N }, () => makeParticle(true));
+
+  function makeParticle(randomY) {
+    const x  = Math.random() * (window.innerWidth  || 1400);
+    const y  = randomY ? Math.random() * (window.innerHeight || 900)
+                       : (window.innerHeight || 900) + 10;
+    const r  = 0.6 + Math.random() * 1.8;
+    const spd = 0.18 + Math.random() * 0.45;
+    const drift = (Math.random() - 0.5) * 0.25;
+    /* hue: mostly cold indigo/violet, occasional warm amber for "light ray" */
+    const warm = Math.random() < 0.12;
+    const hue  = warm ? 38 + Math.random() * 20 : 220 + Math.random() * 60;
+    const sat  = warm ? 80 : 55 + Math.random() * 30;
+    const lum  = 65 + Math.random() * 25;
+    const opa  = 0.12 + Math.random() * 0.45;
+    return { x, y, r, spd, drift, hue, sat, lum, opa, phase: Math.random() * Math.PI * 2 };
+  }
+
+  /* ── light-ray beams: 3–5 soft diagonal shafts ── */
+  const RAYS = 4;
+  const rays = Array.from({ length: RAYS }, (_, i) => ({
+    x:     0.15 + i * 0.22,   /* normalised x origin at top */
+    angle: -0.38 + i * 0.18,  /* slight spread */
+    width: 60 + Math.random() * 80,
+    opa:   0.018 + Math.random() * 0.022,
+    hue:   210 + Math.random() * 50,
+  }));
+
+  let tick = 0;
+
+  function draw() {
+    /* dark sky gradient — shifts very slowly */
+    const t = tick * 0.0003;
+    const grd = ctx.createLinearGradient(0, 0, W, H);
+    grd.addColorStop(0,   `hsl(${232 + Math.sin(t) * 4}, 28%, ${7  + Math.sin(t * 0.7) * 1.5}%)`);
+    grd.addColorStop(0.5, `hsl(${245 + Math.cos(t) * 3}, 22%, ${10 + Math.cos(t * 0.5) * 1}%)`);
+    grd.addColorStop(1,   `hsl(${220 + Math.sin(t) * 5}, 18%, 6%)`);
+    ctx.fillStyle = grd;
+    ctx.fillRect(0, 0, W, H);
+
+    /* light shafts */
+    rays.forEach(ray => {
+      const ox = ray.x * W;
+      const pulse = 0.7 + 0.3 * Math.sin(tick * 0.0008 + ray.angle * 10);
+      const g2 = ctx.createLinearGradient(ox, 0, ox + Math.tan(ray.angle) * H, H);
+      g2.addColorStop(0,   `hsla(${ray.hue}, 60%, 72%, ${ray.opa * pulse * 1.4})`);
+      g2.addColorStop(0.4, `hsla(${ray.hue}, 55%, 65%, ${ray.opa * pulse})`);
+      g2.addColorStop(1,   `hsla(${ray.hue}, 50%, 60%, 0)`);
+      ctx.save();
+      ctx.translate(ox, 0);
+      ctx.rotate(ray.angle);
+      ctx.fillStyle = g2;
+      ctx.beginPath();
+      ctx.rect(-ray.width / 2, 0, ray.width, H * 1.5);
+      ctx.fill();
+      ctx.restore();
+    });
+
+    /* particles */
+    particles.forEach(p => {
+      const flicker = 0.75 + 0.25 * Math.sin(tick * 0.04 + p.phase);
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `hsla(${p.hue}, ${p.sat}%, ${p.lum}%, ${p.opa * flicker})`;
+      ctx.fill();
+
+      /* subtle glow ring for the brighter ones */
+      if (p.opa > 0.38) {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r * 3.5, 0, Math.PI * 2);
+        ctx.fillStyle = `hsla(${p.hue}, ${p.sat}%, ${p.lum}%, ${p.opa * 0.08 * flicker})`;
+        ctx.fill();
+      }
+
+      p.y   -= p.spd;
+      p.x   += p.drift;
+      p.phase += 0.022;
+
+      if (p.y < -10) Object.assign(p, makeParticle(false));
+    });
+
+    tick++;
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+})();
+</script>
 
 </body>
 </html>
